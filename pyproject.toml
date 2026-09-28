@@ -1,0 +1,2 @@
+[tool.orinoco.operations]
+template_updates = true
