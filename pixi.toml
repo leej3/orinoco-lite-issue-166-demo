@@ -1,0 +1,28 @@
+[workspace]
+name = "orinoco-site"
+channels = ["conda-forge"]
+platforms = [{ platform = "osx-arm64", macos = "14.0" }, "linux-64"]
+
+[dependencies]
+python = ">=3.12,<3.13"
+copier = "==9.10.3"
+hugo = "==0.154.5"
+pyyaml = "==6.0.2"
+
+[pypi-dependencies]
+orinoco-lite = { git = "https://github.com/ORINOCO-Lite/orinoco-lite-dev.git", rev = "7c0af0ccc92548ecfbd7849ea5a123949a8522c8", subdirectory = "packages/orinoco-lite" }
+datalad = ">=1.6.2,<2"
+
+[tasks]
+projection-update = "mkdir -p generated && orinoco-lite projection update"
+validate = { depends-on = ["projection-update"], cmd = "orinoco-lite validate" }
+build = { depends-on = ["projection-update"], cmd = "orinoco-lite build --destination build/site --base-url /" }
+verify-local-preview = { depends-on = ["build"], cmd = "orinoco-lite verify-site build/site" }
+verify-build = { depends-on = ["verify-local-preview"] }
+build-pages = { depends-on = ["projection-update"], cmd = "orinoco-lite build --destination build/pages" }
+serve = "orinoco-lite serve --directory build/site --port 8765"
+apply-editor-bundle = "orinoco-lite editor apply"
+orinoco-lite = "orinoco-lite"
+shacl-handoff = "orinoco-lite shacl-handoff"
+prepare-publication = "orinoco-lite publication prepare"
+record-publication = "orinoco-lite publication publish"

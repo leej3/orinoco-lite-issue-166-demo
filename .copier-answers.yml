@@ -1,0 +1,10 @@
+_commit: 17c7c084651cf3d5d1ccefd48d545548cf63c874
+_src_path: https://github.com/ORINOCO-Lite/orinoco-lite-template.git
+project_slug: orinoco-site
+project_name: Orinoco Lite Site
+site_description: A site built with Orinoco Lite.
+site_base_url: https://example.invalid/orinoco-site/
+pr_previews: none
+package_repository: https://github.com/ORINOCO-Lite/orinoco-lite-dev.git
+package_revision: 7c0af0ccc92548ecfbd7849ea5a123949a8522c8
+include_site_specific: true
